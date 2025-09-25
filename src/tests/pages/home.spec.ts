@@ -6,6 +6,6 @@ test.describe('navigation', () => {
   })
 
   test('has title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Boilerplate/)
+    await expect(page).toHaveTitle(/Massively by HTML5 UP/)
   })
 })
