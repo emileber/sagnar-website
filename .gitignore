@@ -42,5 +42,3 @@ tsconfig.tsbuildinfo
 .husky
 /test-results/
 /playwright/.cache/
-
-/html5up-massively
