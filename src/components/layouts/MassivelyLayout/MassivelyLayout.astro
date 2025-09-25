@@ -1,0 +1,33 @@
+---
+export interface Props {
+  title: string
+  description?: string
+}
+
+const { title, description } = Astro.props
+---
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{title}</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    {description && <meta name="description" content={description} />}
+    <link rel="stylesheet" href="/css/main.css" />
+    <noscript><link rel="stylesheet" href="/css/noscript.css" /></noscript>
+  </head>
+  <body class="is-preload">
+    <div id="wrapper" class="fade-in">
+      <slot />
+    </div>
+
+    <script src="/js/jquery.min.js" is:inline></script>
+    <script src="/js/jquery.scrollex.min.js" is:inline></script>
+    <script src="/js/jquery.scrolly.min.js" is:inline></script>
+    <script src="/js/browser.min.js" is:inline></script>
+    <script src="/js/breakpoints.min.js" is:inline></script>
+    <script src="/js/util.js" is:inline></script>
+    <script src="/js/main.js" is:inline></script>
+  </body>
+</html>
