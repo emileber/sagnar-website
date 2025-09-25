@@ -1,11 +1,11 @@
 {
-  "name": "boilerplate_astro_react",
+  "name": "sagnar-website",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
-  "author": "Éverton Toffanetto",
-  "description": "This application is a boilerplate for complex and large systems, especially those that need to scale with security and code quality.",
-  "repository": "https://github.com/everton-dgn/boilerplate_astro_react",
+  "author": "Emile Bergeron",
+  "description": "SAGNAR MTB Team website",
+  "repository": "https://github.com/emileber/sagnar-website",
   "scripts": {
     "dev": "astro dev",
     "dev:verbose": "astro dev --verbose",
