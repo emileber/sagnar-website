@@ -5,21 +5,14 @@ import SocialLinks from 'components/atoms/SocialLinks/SocialLinks.astro'
 import TeamMemberCard from 'components/molecules/TeamMemberCard/TeamMemberCard.astro'
 import ContactForm from 'components/molecules/ContactForm/ContactForm.astro'
 import FooterSection from 'components/atoms/FooterSection/FooterSection.astro'
+import { siteConfig } from '../config'
 
 const socialLinks = [
-  { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
-  { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' }
-]
-
-const socialLinksWithTwitter = [
-  { platform: 'twitter', url: '#', icon: 'fa-twitter', label: 'Twitter' },
-  { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' },
-  { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
-  { platform: 'github', url: '#', icon: 'fa-github', label: 'GitHub' }
+  { platform: 'instagram', url: siteConfig.social.instagram, icon: 'fa-instagram', label: 'Instagram' }
 ]
 ---
 
-<MassivelyLayout title="SAGNAR - French Canadian Enduro Mountain Bike Team" description="Independent French Canadian enduro mountain bike team featuring elite riders and passionate trail enthusiasts">
+<MassivelyLayout title={`${siteConfig.name} - French Canadian Enduro Mountain Bike Team`} description={siteConfig.description}>
   <!-- Intro -->
   <div id="intro">
     <img src="/images/SAGNAR-white-transparent.png" alt="SAGNAR" style="max-width: 400px; height: auto;" />
@@ -32,7 +25,7 @@ const socialLinksWithTwitter = [
 
   <!-- Header -->
   <header id="header">
-    <a href="/" class="logo">SAGNAR</a>
+    <a href="/" class="logo">{siteConfig.name}</a>
   </header>
 
   <!-- Nav -->
@@ -42,7 +35,7 @@ const socialLinksWithTwitter = [
       <li><a href="#team">Team</a></li>
       <li><a href="#footer">Contact</a></li>
     </ul>
-    <SocialLinks links={socialLinksWithTwitter} />
+    <SocialLinks links={socialLinks} />
   </nav>
 
   <!-- Main -->
@@ -50,8 +43,8 @@ const socialLinksWithTwitter = [
     <!-- About Section -->
     <article class="post featured">
       <header class="major">
-        <h2>About SAGNAR</h2>
-        <p>We are an independent French Canadian enduro mountain bike team based in Quebec.<br />
+        <h2>About {siteConfig.name}</h2>
+        <p>{siteConfig.description} based in {siteConfig.team.location}.<br />
         Our mission is to push the boundaries of enduro racing while representing<br />
         the passion and spirit of Canadian mountain biking.</p>
       </header>
@@ -60,18 +53,14 @@ const socialLinksWithTwitter = [
 
     <!-- Team Members -->
     <section class="posts" id="team">
-      <TeamMemberCard 
-        name="Émile J. Bergeron"
-        role="Team Manager"
-        image="/images/A7400086_Edited.jpg"
-        description="As team manager, Émile coordinates race schedules, manages logistics, and ensures the team operates smoothly. His passion for enduro racing and organizational skills keep SAGNAR competitive at the highest level."
-      />
-      <TeamMemberCard 
-        name="Marc-Olivier Lévesque"
-        role="Elite Rider"
-        image="/images/A7400135_Edited-2.jpg"
-        description="Our elite level rider, Marc-Olivier brings years of competitive experience to SAGNAR. Known for his technical skills and fearless approach to challenging terrain, he represents the team's racing spirit."
-      />
+      {siteConfig.members.map(member => (
+        <TeamMemberCard 
+          name={member.name}
+          role={member.role}
+          image={member.image}
+          description={member.description}
+        />
+      ))}
     </section>
 
   </div>
@@ -83,13 +72,13 @@ const socialLinksWithTwitter = [
     </section>
     <section class="split contact">
       <FooterSection title="Location" variant="alt">
-        <p>Quebec, Canada<br />Enduro trails and racing circuits</p>
+        <p>{siteConfig.team.location}<br />Enduro trails and racing circuits</p>
       </FooterSection>
       <FooterSection title="Team Manager">
-        <p>Émile J. Bergeron</p>
+        <p>{siteConfig.members.find(m => m.role.includes('Manager'))?.name}</p>
       </FooterSection>
       <FooterSection title="Email">
-        <p><a href="mailto:contact@sagnar.team">contact@sagnar.team</a></p>
+        <p><a href={`mailto:${siteConfig.team.email}`}>{siteConfig.team.email}</a></p>
       </FooterSection>
       <FooterSection title="Follow Us">
         <SocialLinks variant="alt" links={socialLinks} />
@@ -99,6 +88,6 @@ const socialLinksWithTwitter = [
 
   <!-- Copyright -->
   <div id="copyright">
-    <ul><li>&copy; 2024 SAGNAR</li><li>French Canadian Enduro Team</li></ul>
+    <ul><li>&copy; 2024 {siteConfig.name}</li><li>French Canadian Enduro Team</li></ul>
   </div>
 </MassivelyLayout>

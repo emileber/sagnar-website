@@ -1,4 +1,6 @@
 ---
+import { siteConfig } from '../../../config'
+
 export interface Props {
   variant?: 'default' | 'alt'
   links?: {
@@ -12,8 +14,7 @@ export interface Props {
 const { 
   variant = 'default',
   links = [
-    { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
-    { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' }
+    { platform: 'instagram', url: siteConfig.social.instagram, icon: 'fa-instagram', label: 'Instagram' }
   ]
 } = Astro.props
 
