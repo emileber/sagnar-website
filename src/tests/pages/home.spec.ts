@@ -6,6 +6,6 @@ test.describe('navigation', () => {
   })
 
   test('has title', async ({ page }) => {
-    await expect(page).toHaveTitle(/Massively by HTML5 UP/)
+    await expect(page).toHaveTitle(/SAGNAR - French Canadian Enduro Mountain Bike Team/)
   })
 })
