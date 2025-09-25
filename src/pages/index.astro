@@ -1,5 +1,22 @@
 ---
 import MassivelyLayout from 'components/layouts/MassivelyLayout/MassivelyLayout.astro'
+import Button from 'components/atoms/Button/Button.astro'
+import SocialLinks from 'components/atoms/SocialLinks/SocialLinks.astro'
+import TeamMemberCard from 'components/molecules/TeamMemberCard/TeamMemberCard.astro'
+import ContactForm from 'components/molecules/ContactForm/ContactForm.astro'
+import FooterSection from 'components/atoms/FooterSection/FooterSection.astro'
+
+const socialLinks = [
+  { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
+  { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' }
+]
+
+const socialLinksWithTwitter = [
+  { platform: 'twitter', url: '#', icon: 'fa-twitter', label: 'Twitter' },
+  { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' },
+  { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
+  { platform: 'github', url: '#', icon: 'fa-github', label: 'GitHub' }
+]
 ---
 
 <MassivelyLayout title="SAGNAR - French Canadian Enduro Mountain Bike Team" description="Independent French Canadian enduro mountain bike team featuring elite riders and passionate trail enthusiasts">
@@ -9,7 +26,7 @@ import MassivelyLayout from 'components/layouts/MassivelyLayout/MassivelyLayout.
     <p>Independent French Canadian enduro mountain bike team<br />
     Pushing limits on the trails of Quebec and beyond</p>
     <ul class="actions">
-      <li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Meet the Team</a></li>
+      <li><Button href="#header" variant="icon" icon="fa-arrow-down" classes="scrolly">Meet the Team</Button></li>
     </ul>
   </div>
 
@@ -25,12 +42,7 @@ import MassivelyLayout from 'components/layouts/MassivelyLayout/MassivelyLayout.
       <li><a href="#team">Team</a></li>
       <li><a href="#footer">Contact</a></li>
     </ul>
-    <ul class="icons">
-      <li><a href="#" class="icon brands fa-twitter"><span class="label">Twitter</span></a></li>
-      <li><a href="#" class="icon brands fa-facebook-f"><span class="label">Facebook</span></a></li>
-      <li><a href="#" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li>
-      <li><a href="#" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
-    </ul>
+    <SocialLinks links={socialLinksWithTwitter} />
   </nav>
 
   <!-- Main -->
@@ -48,22 +60,18 @@ import MassivelyLayout from 'components/layouts/MassivelyLayout/MassivelyLayout.
 
     <!-- Team Members -->
     <section class="posts" id="team">
-      <article>
-        <header>
-          <span class="date">Team Manager</span>
-          <h2>Émile J.<br />Bergeron</h2>
-        </header>
-        <a href="#" class="image fit"><img src="/images/A7400086_Edited.jpg" alt="Émile J. Bergeron" /></a>
-        <p>As team manager, Émile coordinates race schedules, manages logistics, and ensures the team operates smoothly. His passion for enduro racing and organizational skills keep SAGNAR competitive at the highest level.</p>
-      </article>
-      <article>
-        <header>
-          <span class="date">Elite Rider</span>
-          <h2>Marc-Olivier<br />Lévesque</h2>
-        </header>
-        <a href="#" class="image fit"><img src="/images/A7400135_Edited-2.jpg" alt="Marc-Olivier Lévesque" /></a>
-        <p>Our elite level rider, Marc-Olivier brings years of competitive experience to SAGNAR. Known for his technical skills and fearless approach to challenging terrain, he represents the team's racing spirit.</p>
-      </article>
+      <TeamMemberCard 
+        name="Émile J. Bergeron"
+        role="Team Manager"
+        image="/images/A7400086_Edited.jpg"
+        description="As team manager, Émile coordinates race schedules, manages logistics, and ensures the team operates smoothly. His passion for enduro racing and organizational skills keep SAGNAR competitive at the highest level."
+      />
+      <TeamMemberCard 
+        name="Marc-Olivier Lévesque"
+        role="Elite Rider"
+        image="/images/A7400135_Edited-2.jpg"
+        description="Our elite level rider, Marc-Olivier brings years of competitive experience to SAGNAR. Known for his technical skills and fearless approach to challenging terrain, he represents the team's racing spirit."
+      />
     </section>
 
   </div>
@@ -71,46 +79,21 @@ import MassivelyLayout from 'components/layouts/MassivelyLayout/MassivelyLayout.
   <!-- Footer -->
   <footer id="footer">
     <section>
-      <form method="post" action="#">
-        <div class="fields">
-          <div class="field">
-            <label for="name">Name</label>
-            <input type="text" name="name" id="name" />
-          </div>
-          <div class="field">
-            <label for="email">Email</label>
-            <input type="text" name="email" id="email" />
-          </div>
-          <div class="field">
-            <label for="message">Message</label>
-            <textarea name="message" id="message" rows="3"></textarea>
-          </div>
-        </div>
-        <ul class="actions">
-          <li><input type="submit" value="Contact SAGNAR" /></li>
-        </ul>
-      </form>
+      <ContactForm />
     </section>
     <section class="split contact">
-      <section class="alt">
-        <h3>Location</h3>
+      <FooterSection title="Location" variant="alt">
         <p>Quebec, Canada<br />Enduro trails and racing circuits</p>
-      </section>
-      <section>
-        <h3>Team Manager</h3>
+      </FooterSection>
+      <FooterSection title="Team Manager">
         <p>Émile J. Bergeron</p>
-      </section>
-      <section>
-        <h3>Email</h3>
+      </FooterSection>
+      <FooterSection title="Email">
         <p><a href="mailto:contact@sagnar.team">contact@sagnar.team</a></p>
-      </section>
-      <section>
-        <h3>Follow Us</h3>
-        <ul class="icons alt">
-          <li><a href="#" class="icon brands alt fa-instagram"><span class="label">Instagram</span></a></li>
-          <li><a href="#" class="icon brands alt fa-facebook-f"><span class="label">Facebook</span></a></li>
-        </ul>
-      </section>
+      </FooterSection>
+      <FooterSection title="Follow Us">
+        <SocialLinks variant="alt" links={socialLinks} />
+      </FooterSection>
     </section>
   </footer>
 

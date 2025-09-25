@@ -1,0 +1,31 @@
+---
+export interface Props {
+  variant?: 'default' | 'alt'
+  links?: {
+    platform: string
+    url: string
+    icon: string
+    label: string
+  }[]
+}
+
+const { 
+  variant = 'default',
+  links = [
+    { platform: 'instagram', url: '#', icon: 'fa-instagram', label: 'Instagram' },
+    { platform: 'facebook', url: '#', icon: 'fa-facebook-f', label: 'Facebook' }
+  ]
+} = Astro.props
+
+const baseClass = variant === 'alt' ? 'icons alt' : 'icons'
+---
+
+<ul class={baseClass}>
+  {links.map(link => (
+    <li>
+      <a href={link.url} class={`icon brands ${variant === 'alt' ? 'alt' : ''} ${link.icon}`}>
+        <span class="label">{link.label}</span>
+      </a>
+    </li>
+  ))}
+</ul>

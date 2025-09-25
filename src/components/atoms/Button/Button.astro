@@ -1,0 +1,37 @@
+---
+export interface Props {
+  href?: string
+  size?: 'default' | 'large'
+  variant?: 'button' | 'icon'
+  icon?: string
+  classes?: string
+  target?: string
+}
+
+const { 
+  href, 
+  size = 'default',
+  variant = 'button',
+  icon,
+  classes = '',
+  target
+} = Astro.props
+
+const buttonClasses = [
+  'button',
+  size === 'large' ? 'large' : '',
+  variant === 'icon' ? 'icon solid solo' : '',
+  icon ? icon : '',
+  classes
+].filter(Boolean).join(' ')
+---
+
+{href ? (
+  <a href={href} class={buttonClasses} target={target}>
+    <slot />
+  </a>
+) : (
+  <button class={buttonClasses}>
+    <slot />
+  </button>
+)}

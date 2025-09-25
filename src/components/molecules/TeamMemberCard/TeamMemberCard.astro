@@ -1,0 +1,28 @@
+---
+export interface Props {
+  name: string
+  role: string
+  image: string
+  description: string
+  link?: string
+}
+
+const { name, role, image, description, link } = Astro.props
+---
+
+<article>
+  <header>
+    <span class="date">{role}</span>
+    <h2>{name}</h2>
+  </header>
+  {link ? (
+    <a href={link} class="image fit">
+      <img src={image} alt={name} />
+    </a>
+  ) : (
+    <div class="image fit">
+      <img src={image} alt={name} />
+    </div>
+  )}
+  <p>{description}</p>
+</article>
